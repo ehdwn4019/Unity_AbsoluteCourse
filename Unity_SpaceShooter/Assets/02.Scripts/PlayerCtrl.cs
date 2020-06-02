@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class PlayerAnim
+{
+    public AnimationClip idle;
+    public AnimationClip runF;
+    public AnimationClip runB;
+    public AnimationClip runL;
+    public AnimationClip runR;
+}
+
 public class PlayerCtrl : MonoBehaviour
 {
     private float h = 0.0f;
@@ -12,10 +22,16 @@ public class PlayerCtrl : MonoBehaviour
 
     public float moveSpeed = 10.0f;
     public float rotSpeed = 80.0f;
+
+    public PlayerAnim playerAinim;
+    public Animation anim;
     // Start is called before the first frame update
     void Start()
     {
         tr = GetComponent<Transform>();
+        anim = GetComponent<Animation>();
+        anim.clip = playerAinim.idle;
+        anim.Play();
     }
 
     // Update is called once per frame
@@ -34,5 +50,27 @@ public class PlayerCtrl : MonoBehaviour
 
         tr.Rotate(Vector3.up * rotSpeed * Time.deltaTime * r);
         //tr.Translate(Vector3.forward * moveSpeed * Time.deltaTime, Space.Self);
+
+        if (v >= 0.1f)
+        {
+            anim.CrossFade(playerAinim.runF.name, 0.3f);
+        }
+        else if (v <= -0.1f)
+        {
+            anim.CrossFade(playerAinim.runB.name,0.3f);
+        }
+        else if (h >= 0.1f)
+        {
+            anim.CrossFade(playerAinim.runR.name,0.3f);
+        }
+        else if (h <= -0.1f)
+        {
+            anim.CrossFade(playerAinim.runL.name,0.3f);
+        }
+        else
+        {
+            anim.CrossFade(playerAinim.idle.name,0.3f);
+        }
+
     }
 }

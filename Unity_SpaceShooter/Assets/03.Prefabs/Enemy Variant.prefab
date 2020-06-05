@@ -304,7 +304,7 @@ MonoBehaviour:
   Bullet: {fileID: 8415484922173441849, guid: 76ac057443536b94bba343100a4df0d8, type: 3}
   firePos: {fileID: 1211961098}
   muzzleFlash: {fileID: 847288050}
---- !u!114 &1102605653
+--- !u!114 &8079747977467507763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -316,7 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0494a8fc0d7e514e9826185b8757080, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpBarPrefab: {fileID: 300078468818242573}
+  hpBarPrefab: {fileID: 5181837920013082474, guid: e4c9654fb332ebc43a7cf3c32dc4c80d,
+    type: 3}
   hpBarOffset: {x: 0, y: 2.2, z: 0}
 --- !u!1001 &300078468818143949
 PrefabInstance:

@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public int maxPool = 10;
     public List<GameObject> bulletPool = new List<GameObject>();
 
+    private bool isPaused;
+
 
     private void Awake()
     {
@@ -97,5 +99,18 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void OnPauseClick()
+    {
+        isPaused = !isPaused;
+        Time.timeScale = (isPaused) ? 0.0f : 1.0f;
+
+        var playerObj = GameObject.FindGameObjectWithTag("PLAYER");
+        var scripts = playerObj.GetComponents<MonoBehaviour>();
+        foreach(var script in scripts)
+        {
+            script.enabled = !isPaused;
+        }
     }
 }

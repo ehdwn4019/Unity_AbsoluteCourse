@@ -1,8 +1,11 @@
 ﻿//using System;
 //sing System;
+//using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +23,10 @@ public class GameManager : MonoBehaviour
     public List<GameObject> bulletPool = new List<GameObject>();
 
     private bool isPaused;
+    public CanvasGroup inventoryCG;
+
+    [HideInInspector] public int killCount;
+    public Text killCountTxt;
 
 
     private void Awake()
@@ -34,12 +41,23 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(this.gameObject);
+
+        LoadGameData();
+
         CreatePooling();
+    }
+
+    private void LoadGameData()
+    {
+        killCount = PlayerPrefs.GetInt("KILL_COUNT", 0);
+        killCountTxt.text = "KILL" + killCount.ToString("0000");
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        OnInventoryOpen(false);
+
         points = GameObject.Find("SpawnPointGroup").GetComponentsInChildren<Transform>();
 
         if(points.Length>0)
@@ -112,5 +130,23 @@ public class GameManager : MonoBehaviour
         {
             script.enabled = !isPaused;
         }
+
+        var canvasGroup = GameObject.Find("Panel-Weapon").GetComponent<CanvasGroup>();
+        canvasGroup.blocksRaycasts = !isPaused;
+    }
+
+
+    public void OnInventoryOpen(bool isOpened)
+    {
+        inventoryCG.alpha = (isOpened) ? 1.0f : 0.0f;
+        inventoryCG.interactable = isOpened;
+        inventoryCG.blocksRaycasts = isOpened;
+    }
+
+    public void IncKillCount()
+    {
+        ++killCount;
+        killCountTxt.text = "KILL" + killCount.ToString("0000");
+        PlayerPrefs.SetInt("KILL_COUNT", killCount);
     }
 }

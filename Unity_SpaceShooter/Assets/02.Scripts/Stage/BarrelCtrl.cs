@@ -21,13 +21,23 @@ public class BarrelCtrl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         meshFilter = GetComponent<MeshFilter>();
         _renderer = GetComponent<MeshRenderer>();
         _audio = GetComponent<AudioSource>();
         shake = GameObject.Find("CameraRig").GetComponent<Shake>();
         _renderer.material.mainTexture = textures[Random.Range(0, textures.Length)];
        
+    }
+
+    IEnumerator GetShake()
+    {
+        while(!UnityEngine.SceneManagement.SceneManager.GetSceneByName("Play").isLoaded)
+        {
+            yield return null;
+
+        }
+        shake = GameObject.Find("CameraRig").GetComponent<Shake>();
     }
 
     // Update is called once per frame

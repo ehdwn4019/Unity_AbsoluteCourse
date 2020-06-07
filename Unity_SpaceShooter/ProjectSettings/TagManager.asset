@@ -24,8 +24,8 @@ TagManager:
   - BULLET
   - E_BULLET
   - ENEMY
-  - 
-  - 
+  - OBSTACLE
+  - PLAYER
   - 
   - 
   - 

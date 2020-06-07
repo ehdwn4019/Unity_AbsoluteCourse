@@ -36,11 +36,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: 6769a3f97c6660042ab97621eb57ccab, type: 3}
       propertyPath: m_Name
-      value: Box
+      value: Box Variant
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 6769a3f97c6660042ab97621eb57ccab, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6769a3f97c6660042ab97621eb57ccab, type: 3}
       propertyPath: m_LocalPosition.x

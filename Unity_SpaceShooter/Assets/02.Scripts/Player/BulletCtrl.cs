@@ -12,17 +12,24 @@ public class BulletCtrl : MonoBehaviour
     private Rigidbody rb;
     private TrailRenderer trail;
 
+    void OnEnable()
+    {
+        rb.AddForce(transform.forward * speed);
+        GameManager.OnItemChange += UpdateSetup;
+    }
+
+    void UpdateSetup()
+    {
+        damage = GameManager.instance.gameData.damage;
+    }
+
     private void Awake()
     {
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
         trail = GetComponent<TrailRenderer>();
+        damage = GameManager.instance.gameData.damage;
 
-    }
-
-    private void OnEnable()
-    {
-        rb.AddForce(transform.forward * speed);
     }
 
     private void OnDisable()

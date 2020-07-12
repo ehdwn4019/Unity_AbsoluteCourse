@@ -1,2 +1,1 @@
-# Unity_SpaceShooter
-유니티_SpaceShooter
+# 절대강좌 유니티 실습
